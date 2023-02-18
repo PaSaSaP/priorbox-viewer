@@ -8,6 +8,7 @@
   window.onload = function(){
     toDefault();
     onPriorboxesUpdate();
+    toShowBoth();
 //    WebFont.load({
 //      custom: {
 //        families: ['FontAwesome'],
@@ -32,14 +33,27 @@
     annotations = myImageViewer.exportAnnotations();
   }
 
-  function toDefault(){
+  function toDefault(force=false){
     if(myImageViewer !== null){
       myImageViewer.dispose();
     }
     myImageViewer = new ImageViewer(canvasId, imageSrc);
     solution = [];
     answer = null;
+
+    toDefaultElementValue("priorbox_number", force);
+    toDefaultElementValue("det_x", force);
+    toDefaultElementValue("det_y", force);
+    toDefaultElementValue("det_w", force);
+    toDefaultElementValue("det_h", force);
   }
+
+function toDefaultElementValue(elementName, force=false) {
+  var element = document.getElementById(elementName);
+  if (force || element.value.length == 0) {
+    element.value = "0";
+  }
+}
 
   function toEditAnswer(){
     reloadImageViewer('editAnswer');
