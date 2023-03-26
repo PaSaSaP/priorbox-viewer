@@ -116,19 +116,27 @@ function toShowBoth() {
 
 function getPriorboxPolygon() {
   var priorbox = priorboxes[document.getElementById("priorbox_number").valueAsNumber]
-  var xmin = priorbox[1] * myImageViewer.image.width;
-  var ymin = priorbox[0] * myImageViewer.image.height;
-  var xmax = priorbox[3] * myImageViewer.image.width;
-  var ymax = priorbox[2] * myImageViewer.image.height;
+  var xcenter = priorbox[1];
+  var ycenter = priorbox[0];
+  var w = priorbox[3];
+  var h = priorbox[2];
+  var xmin = xcenter - w / 2;
+  var ymin = ycenter - h / 2;
+  var xmax = xcenter + w / 2;
+  var ymax = ycenter + h / 2;
   return [{x: xmin, y: ymin}, {x: xmax, y: ymin}, {x: xmax, y: ymax}, {x: xmin, y: ymax}, {x: xmin, y: ymin}];
 }
 
 function getBboxPolygon() {
   var priorbox = priorboxes[document.getElementById("priorbox_number").valueAsNumber]
-  var xmin = priorbox[1];
-  var ymin = priorbox[0];
-  var xmax = priorbox[3];
-  var ymax = priorbox[2];
+  var xcenter = priorbox[1];
+  var ycenter = priorbox[0];
+  var w = priorbox[3];
+  var h = priorbox[2];
+  var xmin = xcenter - w / 2;
+  var ymin = ycenter - h / 2;
+  var xmax = xcenter + w / 2;
+  var ymax = ycenter + h / 2;
   var det_x = document.getElementById("det_x").valueAsNumber;
   var det_y = document.getElementById("det_y").valueAsNumber;
   var det_w = document.getElementById("det_w").valueAsNumber;
